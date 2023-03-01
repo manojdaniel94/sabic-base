@@ -17,10 +17,10 @@ export const Api = {
     getApiTopbarsummaryAssetpmtByplantid: BASE_URL + 'PlantPmt/gettopbarsummary_assetpmt_byplantid/',
     getApiassetcardpmtByassetid: BASE_URL + 'PlantPmt/gettopbarsummary_assetpmt_byplantid/',
     getdeviationplotgraph_byassetid: BASE_URL + 'DeviationPlot/getdeviationplotgraph_byassetid/',
-    
-    getApiAssetStatusListbyPlantId: BASE_URL + 'DeviationPlot/getdeviationplotgraph_byassetid/',
-    getApiHeatMapToolTipbyAssetStatus: BASE_URL + 'DeviationPlot/getdeviationplotgraph_byassetid/',
-    getApiTopBarToolTipbyPlantId: BASE_URL + 'DeviationPlot/getdeviationplotgraph_byassetid/',
+
+    getApiAssetStatusListbyPlantId: BASE_URL + 'PlantPmt/GetAssetStatusListbyPlantId/',
+    getApiHeatMapToolTipbyAssetStatus: BASE_URL + 'PlantPmt/GetHeatMapToolTipbyAssetStatus//',
+    getApiTopBarToolTipbyPlantId: BASE_URL + 'PlantPmt/GetTopBarToolTipbyPlantId/',
 
 }
 
