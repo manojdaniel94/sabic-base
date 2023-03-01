@@ -21,7 +21,7 @@ const Plant = () => {
         console.log(id)
     }
 
-    const getSelectedclassName = (id: any) => selectedID === id ? "selected" : "notselected";
+    const getSelectedclassName = (id: any) => selectedID === id ? "active" : "notselected";
 
 
     const renderStep = () => {
@@ -47,9 +47,9 @@ const Plant = () => {
         <>
             <Status />
             <MenuContainer
-            // data={PLANT_MENU_DATA}
-            // handleMenuClick={handleMenuClick}
-            // getSelectedclassName={getSelectedclassName}
+                data={PLANT_MENU_DATA}
+                handleMenuClick={handleMenuClick}
+                getSelectedclassName={getSelectedclassName}
             />
             {renderStep()}
         </>
