@@ -746,8 +746,9 @@ export const gettopbarsummaryAssetpmtByplantid = [
     {
         "affiliateCount": 1,
         "assetCount": 111,
-        "healthIndex": 0,
+        "healthIndex": 28,
         "pmCompliance": 0,
+        "spare": "NA",
         "active": 0,
         "overdueInvestigation": 0,
         "underInvestigation": 0

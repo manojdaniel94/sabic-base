@@ -11,26 +11,36 @@ import imageOverdue from "../../assets/images/icon_Overdue.svg";
 import imageUnderInvestigate from "../../assets/images/icon_Under_Investigate.svg";
 
 interface Props {
-    buttonName: string;
-    onClickHandler: any;
-
+    data: any[];
+    page: string;
+    healthIndex: any[];
 }
 
-const Status = () => {
+const Status = ({ data, page, healthIndex }: Props) => {
+    console.log("healthIndex for PLANT", healthIndex)
     return (
-        <div id="status">
-            <div className="common">
-                <div><div><img src={iconAffiliates} title="Affiliates" /></div><div><span id="value">18</span><span>AFFILIATES</span></div></div>
-                <div><div><img src={iconAssets} title="Assets" /></div><div><span id="value2">112</span><span>ASSETS</span></div></div>
-                <div><div><img src={iconHealthIndex} title="Health_Index" /></div><div><span>23%</span><span>HEALTH INDEX</span></div></div>
-                <div><div><img src={iconProfile} title="PM_Compliance" /></div><div><span id="value4">55</span><span>PM COMPLIANCE</span></div></div>
-                <div><div><img src={imagePMCompliance} title="Spares_Availability" /></div><div><span id="value4">55</span><span>SPARES AVAILABILITY</span></div></div>
-                <div><div><img src={imageActive} title="Active" /></div><div><span id="value2">112</span><span>ACTIVE</span></div></div>
-                <div><div><img src={imageOverdue} title="Overdue_Investigate" /></div><div><span id="value2">112</span><span>UNDER INVESTIGATION</span></div></div>
-                <div><div><img src={imageUnderInvestigate} title="Under_Investigate" /></div><div><span id="value2">112</span><span>OVERDUE INVESTIGATION</span></div></div>
-            </div>
-        </div>
-
+        <>
+            {page === "PLANT" ?
+                <>
+                    {data && data.length > 0 ?
+                        <div id="status">
+                            <div className="common">
+                                <div><div><img src={iconAffiliates} title="Affiliates" /></div><div><span id="value">{data[0].affiliateCount}</span><span>AFFILIATES</span></div></div>
+                                <div><div><img src={iconAssets} title="Assets" /></div><div><span id="value2">{data[0].assetCount}</span><span>ASSETS</span></div></div>
+                                <div><div><img src={iconHealthIndex} title="Health_Index" /></div><div><span>{data[0].healthIndex}%</span><span>HEALTH INDEX</span></div></div>
+                                <div><div><img src={iconProfile} title="PM_Compliance" /></div><div><span id="value4">{data[0].pmCompliance}</span><span>PM COMPLIANCE</span></div></div>
+                                <div><div><img src={imagePMCompliance} title="Spares_Availability" /></div><div><span id="value4">{data[0].spare}</span><span>SPARES AVAILABILITY</span></div></div>
+                                <div><div><img src={imageActive} title="Active" /></div><div><span id="value2">{data[0].active}</span><span>ACTIVE</span></div></div>
+                                <div><div><img src={imageOverdue} title="Overdue_Investigate" /></div><div><span id="value2">{data[0].underInvestigation}</span><span>UNDER INVESTIGATION</span></div></div>
+                                <div><div><img src={imageUnderInvestigate} title="Under_Investigate" /></div><div><span id="value2">{data[0].overdueInvestigation}</span><span>OVERDUE INVESTIGATION</span></div></div>
+                            </div>
+                        </div>
+                        : null
+                    }
+                </>
+                : null
+            }
+        </>
     );
 };
 
