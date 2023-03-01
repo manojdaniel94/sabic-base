@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import MenuContainer from "../components/MenuContainer";
 import PmtDashboard from "./PlantPage/PmtDashboard";
 import AlertSatistics from "./PlantPage/AlertSatistics";
+import Status from "../components/Status/Status";
 
 
 const PLANT_MENU_DATA = [
@@ -42,16 +43,18 @@ const Plant = () => {
     }
 
     return (
+
         <>
-            <div>
-                <MenuContainer
-                    data={PLANT_MENU_DATA}
-                    handleMenuClick={handleMenuClick}
-                    getSelectedclassName={getSelectedclassName}
-                />
-                {renderStep()}
-            </div>
+            <Status />
+            <MenuContainer
+            // data={PLANT_MENU_DATA}
+            // handleMenuClick={handleMenuClick}
+            // getSelectedclassName={getSelectedclassName}
+            />
+            {renderStep()}
         </>
+
+
     );
 };
 
