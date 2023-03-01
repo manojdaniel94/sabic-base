@@ -772,3 +772,311 @@ export const getassetstatuspmtByplantid = [
         "value": "2"
     }
 ]
+export const getJsonAssetStatusListbyPlantId = [
+    {
+        "status": "Asset Under Risk"
+      },
+      {
+        "status": "State Change"
+      },
+      {
+        "status": "Normal"
+      },
+      {
+        "status": "Poor Data"
+      },
+      {
+        "status": "status"
+      },
+      {
+        "status": "Pi Data Disconnection"
+      },
+      {
+        "status": "Asset-off"
+      },
+      {
+        "status": "Warning"
+      }
+]
+export const getJsonHeatMapToolTipbyAssetStatus = [
+    {
+        "assetSapId": "310060739",
+        "assetHealthIndex": 26,
+        "assetTrend": false,
+        "assetId": "2Y-3001A",
+        "assetName": "JSW N2 compressors"
+      },
+      {
+        "assetSapId": "310060748",
+        "assetHealthIndex": 23,
+        "assetTrend": false,
+        "assetId": "2Y-3001B",
+        "assetName": "JSW N2 compressors"
+      },
+      {
+        "assetSapId": "310061199",
+        "assetHealthIndex": 52,
+        "assetTrend": true,
+        "assetId": "2Y-3606",
+        "assetName": "Atlas Copco Air Compressor"
+      },
+      {
+        "assetSapId": "310061205",
+        "assetHealthIndex": 50,
+        "assetTrend": false,
+        "assetId": "2Y-3607",
+        "assetName": "Atlas Copco Air Compressor"
+      }
+]
+export const getJsonTopBarToolTipbyPlantId = [
+    {
+        "AssetSapId": 310059910,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2K-3101",
+        "PlantId": 18,
+        "AssetName": "Cycle Gas Compressor 4"
+      },
+      {
+        "AssetSapId": 310059923,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2K-3201",
+        "PlantId": 18,
+        "AssetName": "Cycle Gas Compressor 5"
+      },
+      {
+        "AssetSapId": 310059938,
+        "AssetHealthIndex": "NULL",
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2K-4101",
+        "PlantId": 18,
+        "AssetName": "Cycle Gas Compressor 6"
+      },
+      {
+        "AssetSapId": 310059948,
+        "AssetHealthIndex": "NULL",
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2K-4103",
+        "PlantId": 18,
+        "AssetName": "VRC"
+      },
+      {
+        "AssetSapId": 310060739,
+        "AssetHealthIndex": 26,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3001A",
+        "PlantId": 18,
+        "AssetName": "JSW N2 compressors"
+      },
+      {
+        "AssetSapId": 310060748,
+        "AssetHealthIndex": 23,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3001B",
+        "PlantId": 18,
+        "AssetName": "JSW N2 compressors"
+      },
+      {
+        "AssetSapId": 310060752,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3003A",
+        "PlantId": 18,
+        "AssetName": "JSW C2 compressors"
+      },
+      {
+        "AssetSapId": 310060756,
+        "AssetHealthIndex": 86,
+        "AssetTrend": 1,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3003B",
+        "PlantId": 18,
+        "AssetName": "JSW C2 compressors"
+      },
+      {
+        "AssetSapId": 310060764,
+        "AssetHealthIndex": 94,
+        "AssetTrend": 1,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3013A",
+        "PlantId": 18,
+        "AssetName": "JSW H2 compressors"
+      },
+      {
+        "AssetSapId": 310060771,
+        "AssetHealthIndex": "NULL",
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3013B",
+        "PlantId": 18,
+        "AssetName": "JSW H2 compressors"
+      },
+      {
+        "AssetSapId": 310061001,
+        "AssetHealthIndex": "NULL",
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3223",
+        "PlantId": 18,
+        "AssetName": "Extruder 5"
+      },
+      {
+        "AssetSapId": 310061164,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3601",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco N2 Compressor"
+      },
+      {
+        "AssetSapId": 310061172,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3602",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco N2 Compressor"
+      },
+      {
+        "AssetSapId": 310061180,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3603",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco N2 Compressor"
+      },
+      {
+        "AssetSapId": 310061188,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3604",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco N2 Compressor"
+      },
+      {
+        "AssetSapId": 310061193,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3605",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco Air Compressor"
+      },
+      {
+        "AssetSapId": 310061199,
+        "AssetHealthIndex": 52,
+        "AssetTrend": 1,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3606",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco Air Compressor"
+      },
+      {
+        "AssetSapId": 310061205,
+        "AssetHealthIndex": 50,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3607",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco Air Compressor"
+      },
+      {
+        "AssetSapId": 310061211,
+        "AssetHealthIndex": "NULL",
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3608",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco Air Compressor"
+      },
+      {
+        "AssetSapId": 310061217,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3609",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco Air Compressor"
+      },
+      {
+        "AssetSapId": 310061244,
+        "AssetHealthIndex": 0,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3630",
+        "PlantId": 18,
+        "AssetName": "Atlas Copco Air Compressor"
+      },
+      {
+        "AssetSapId": 310061349,
+        "AssetHealthIndex": "NULL",
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-4123A",
+        "PlantId": 18,
+        "AssetName": "Extruder 6"
+      },
+      {
+        "AssetSapId": 310061373,
+        "AssetHealthIndex": "NULL",
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-4123B",
+        "PlantId": 18,
+        "AssetName": "Extruder 7"
+      },
+      {
+        "AssetSapId": 310365022,
+        "AssetHealthIndex": 50,
+        "AssetTrend": 1,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3665",
+        "PlantId": 18,
+        "AssetName": "ORC"
+      },
+      {
+        "AssetSapId": 320034310,
+        "AssetHealthIndex": 40,
+        "AssetTrend": 0,
+        "PlantHealth": 28,
+        "PlantTrend": 1,
+        "AssetId": "2Y-3123",
+        "PlantId": 18,
+        "AssetName": "Extruder 4"
+      }
+]
