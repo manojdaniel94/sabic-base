@@ -3,6 +3,8 @@ import MenuContainer from "../components/MenuContainer";
 import PmtDashboard from "./PlantPage/PmtDashboard";
 import AlertSatistics from "./PlantPage/AlertSatistics";
 import Status from "../components/Status/Status";
+import { useDispatch, useSelector } from "react-redux";
+import { getStatusAssetPmtByPlantId, getTopBarToolTipbyPlantId } from "../redux/reducers/CommonReducer";
 
 
 const PLANT_MENU_DATA = [
@@ -12,6 +14,18 @@ const PLANT_MENU_DATA = [
     { id: 4, value: "ALERT MANAGEMENT PAGE" },
 ];
 const Plant = () => {
+
+    let dispatch = useDispatch();
+
+    const { statusAssetPmtByPlantId,topBarToolTipbyPlantId} = useSelector((state: any) => ({
+        statusAssetPmtByPlantId: state.Common.statusAssetPmtByPlantId,
+        topBarToolTipbyPlantId: state.Common.topBarToolTipbyPlantId,
+    }));
+
+    useEffect(() => {
+        dispatch(getStatusAssetPmtByPlantId("18")); //selectedPlant.value
+        dispatch(getTopBarToolTipbyPlantId("18/1")); //{plantId}/{userid}
+    }, []);
 
     // const [elements, setElements] = useState(PLANT_MENU_DATA);
     const [selectedID, setSelectedID] = useState(1);
@@ -45,7 +59,11 @@ const Plant = () => {
     return (
 
         <>
-            <Status />
+            <Status 
+                data={statusAssetPmtByPlantId} 
+                page={"PLANT"}
+                healthIndex={topBarToolTipbyPlantId} 
+            />
             <MenuContainer
                 data={PLANT_MENU_DATA}
                 handleMenuClick={handleMenuClick}
