@@ -2,13 +2,18 @@ import React, { useRef } from "react";
 import '../../../assets/common/PmtDashboard.scss'
 import { Table } from "antd";
 
-const PlantAlertList = () => {
+
+
+interface Props {
+    data: any[];
+}
+const PlantAlertList = ({ data }: Props) => {
 
     const columns = [
         {
             title: "TIME STAMP",
-            dataIndex: "timestamp",
-            key: "timestamp",
+            dataIndex: "timeStamp",
+            key: "timeStamp",
             width: "30%",
         },
         {
@@ -20,13 +25,13 @@ const PlantAlertList = () => {
 
         {
             title: "ALERT DESCRIPTION",
-            dataIndex: "alertDescription",
-            key: "alertDescription",
+            dataIndex: "description",
+            key: "description",
         },
         {
             title: "ALERT STATUS",
-            dataIndex: "alertStatus",
-            key: "alertStatus",
+            dataIndex: "status",
+            key: "status",
             width: "20%",
 
             render: (status: any) => (
@@ -37,128 +42,6 @@ const PlantAlertList = () => {
         },
     ];
 
-    const data = [
-        {
-            key: "1",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "2",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 23 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "3",
-            timestamp: "20/01/2023 16:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 116 Properly not active",
-            alertStatus: "Solved",
-        },
-        {
-            key: "4",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "5",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "6",
-            timestamp: "20/01/2023 16:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 116 Properly not active",
-            alertStatus: "Solved",
-        },
-        {
-            key: "5",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "6",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "7",
-            timestamp: "20/01/2023 16:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 116 Properly not active",
-            alertStatus: "Solved",
-        },
-        {
-            key: "8",
-            timestamp: "20/01/2023 16:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 116 Properly not active",
-            alertStatus: "Solved",
-        },
-        {
-            key: "9",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "10",
-            timestamp: "20/01/2023 16:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 116 Properly not active",
-            alertStatus: "Solved",
-        },
-        {
-            key: "11",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "12",
-            timestamp: "20/01/2023 04:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 06 not working Properly",
-            alertStatus: "Active",
-        },
-        {
-            key: "13",
-            timestamp: "20/01/2023 16:55",
-            assetId: "G-2303B",
-            alertId: "00986e",
-            alertDescription: "Asset 116 Properly not active",
-            alertStatus: "Solved",
-        },
-    ];
 
     return (
         <div id="pmt-alert-list">
