@@ -3,7 +3,7 @@ import { put, takeEvery, debounce, select } from '@redux-saga/core/effects';
 import { getRequest, postRequest } from '../../utility/request';
 import { Api } from '../../utility/api';
 import { HTTP_CALL } from '../../constant/constants';
-import { getassetlistByplantid, getplantAlertspmt, getassetcardpmtByplantid, getassetcardpmtByassetid, gettopbarsummaryAssetpmtByplantid, getassetstatuspmtByplantid } from '../../DataModel/PMT/PmtList';
+import { getassetlistByplantid, getplantAlertspmt, getassetcardpmtByplantid, getassetcardpmtByassetid, gettopbarsummaryAssetpmtByplantid, getassetstatuspmtByplantid, getJsonAssetStatusListbyPlantId, getJsonHeatMapToolTipbyAssetStatus, getJsonTopBarToolTipbyPlantId } from '../../DataModel/PMT/PmtList';
 
 
 
@@ -246,6 +246,105 @@ function* getStatusAssetPmtByPlantId(action: any) {
     }
 
 }
+function* getssetStatusListbyPlantId(action: any) {
+    if (HTTP_CALL) {
+        try {
+            const response = yield getRequest(`${Api.getApiAssetstatuspmtByplantid}${action.payload}`);
+            if (response.status == 200) {
+                console.log('GET POST RESPONSE DATA', response.data);
+                yield put({
+                    type: "Common/getssetStatusListbyPlantIdSuccess",
+                    payload: response.data
+
+                });
+            } else {
+                yield put({
+                    type: "Common/getssetStatusListbyPlantIdFailure",
+                    payload: "not 200",
+                });
+            }
+        } catch (error) {
+            yield put({
+                type: "Common/getssetStatusListbyPlantIdFailure",
+                payload: error,
+            });
+        }
+    }
+    else {
+        yield put({
+            type: "Common/getssetStatusListbyPlantIdSuccess",
+            payload: getJsonAssetStatusListbyPlantId
+
+        });
+    }
+
+}
+function* getHeatMapToolTipbyAssetStatus(action: any) {
+    if (HTTP_CALL) {
+        try {
+            const response = yield getRequest(`${Api.getApiAssetstatuspmtByplantid}${action.payload}`);
+            if (response.status == 200) {
+                console.log('GET POST RESPONSE DATA', response.data);
+                yield put({
+                    type: "Common/getHeatMapToolTipbyAssetStatusSuccess",
+                    payload: response.data
+
+                });
+            } else {
+                yield put({
+                    type: "Common/getHeatMapToolTipbyAssetStatusFailure",
+                    payload: "not 200",
+                });
+            }
+        } catch (error) {
+            yield put({
+                type: "Common/getHeatMapToolTipbyAssetStatusFailure",
+                payload: error,
+            });
+        }
+    }
+    else {
+        yield put({
+            type: "Common/getHeatMapToolTipbyAssetStatusSuccess",
+            payload: getJsonHeatMapToolTipbyAssetStatus
+
+        });
+    }
+
+}
+function* getTopBarToolTipbyPlantId(action: any) {
+    if (HTTP_CALL) {
+        try {
+            const response = yield getRequest(`${Api.getApiAssetstatuspmtByplantid}${action.payload}`);
+            if (response.status == 200) {
+                console.log('GET POST RESPONSE DATA', response.data);
+                yield put({
+                    type: "Common/getTopBarToolTipbyPlantIdSuccess",
+                    payload: response.data
+
+                });
+            } else {
+                yield put({
+                    type: "Common/getTopBarToolTipbyPlantIdFailure",
+                    payload: "not 200",
+                });
+            }
+        } catch (error) {
+            yield put({
+                type: "Common/getTopBarToolTipbyPlantIdFailure",
+                payload: error,
+            });
+        }
+    }
+    else {
+        yield put({
+            type: "Common/getTopBarToolTipbyPlantIdSuccess",
+            payload: getJsonTopBarToolTipbyPlantId
+
+        });
+    }
+
+}
 
 
 
@@ -257,4 +356,7 @@ export default function* mySaga() {
     yield takeEvery('Common/getAssetCardPmtByAssetId', getAssetCardPmtByAssetId);
     yield takeEvery('Common/getAssetStatusPmtByPlantId', getAssetStatusPmtByPlantId);
     yield takeEvery('Common/getStatusAssetPmtByPlantId', getStatusAssetPmtByPlantId);
+    yield takeEvery('Common/getssetStatusListbyPlantId', getssetStatusListbyPlantId);
+    yield takeEvery('Common/getHeatMapToolTipbyAssetStatus', getHeatMapToolTipbyAssetStatus);
+    yield takeEvery('Common/getTopBarToolTipbyPlantId', getTopBarToolTipbyPlantId);
 }

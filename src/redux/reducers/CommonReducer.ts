@@ -19,6 +19,12 @@ const CommonSlice = createSlice({
         loadingAssetStatusPmtByPlantId: false,
         statusAssetPmtByPlantId:[],
         loadingStatusAssetPmtByPlantId: false,
+        setStatusListbyPlantId:[],
+        loadingSetStatusListbyPlantId: false,
+        heatMapToolTipbyAssetStatus:[],
+        loadingHeatMapToolTipbyAssetStatus: false,
+        topBarToolTipbyPlantId:[],
+        loadingTopBarToolTipbyPlantId: false,
     },
     reducers: {
         getRegions: (state, action) => {
@@ -96,6 +102,39 @@ const CommonSlice = createSlice({
             state.message = action.payload
             state.loadingStatusAssetPmtByPlantId = false
         },
+        getssetStatusListbyPlantId: (state, action) => {
+            state.loadingSetStatusListbyPlantId = true
+        },
+        getssetStatusListbyPlantIdSuccess: (state, action) => {
+            state.setStatusListbyPlantId = action.payload
+            state.loadingSetStatusListbyPlantId = false
+        },
+        getssetStatusListbyPlantIdFailure: (state, action) => {
+            state.message = action.payload
+            state.loadingSetStatusListbyPlantId = false
+        },
+        getHeatMapToolTipbyAssetStatus: (state, action) => {
+            state.loadingHeatMapToolTipbyAssetStatus = true
+        },
+        getHeatMapToolTipbyAssetStatusSuccess: (state, action) => {
+            state.heatMapToolTipbyAssetStatus = action.payload
+            state.loadingHeatMapToolTipbyAssetStatus = false
+        },
+        getHeatMapToolTipbyAssetStatusFailure: (state, action) => {
+            state.message = action.payload
+            state.loadingHeatMapToolTipbyAssetStatus = false
+        },
+        getTopBarToolTipbyPlantId: (state, action) => {
+            state.loadingTopBarToolTipbyPlantId = true
+        },
+        getTopBarToolTipbyPlantIdSuccess: (state, action) => {
+            state.topBarToolTipbyPlantId = action.payload
+            state.loadingTopBarToolTipbyPlantId = false
+        },
+        getTopBarToolTipbyPlantIdFailure: (state, action) => {
+            state.message = action.payload
+            state.loadingTopBarToolTipbyPlantId = false
+        },
     }
 })
 
@@ -121,6 +160,15 @@ export const {
     getStatusAssetPmtByPlantId,
     getStatusAssetPmtByPlantIdSuccess,
     getStatusAssetPmtByPlantIdFailure,
+    getssetStatusListbyPlantId,
+    getssetStatusListbyPlantIdSuccess,
+    getssetStatusListbyPlantIdFailure,
+    getHeatMapToolTipbyAssetStatus,
+    getHeatMapToolTipbyAssetStatusSuccess,
+    getHeatMapToolTipbyAssetStatusFailure,
+    getTopBarToolTipbyPlantId,
+    getTopBarToolTipbyPlantIdSuccess,
+    getTopBarToolTipbyPlantIdFailure,
 } = CommonSlice.actions
 
 export default CommonSlice.reducer
