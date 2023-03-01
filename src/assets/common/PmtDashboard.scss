@@ -146,6 +146,14 @@
         flex-direction: column;
         border-radius: 5px;
         padding: 30px;
+        position: relative;
+
+        .pmt-right-dropdown {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            width: 200px;
+        }
 
         .pmt-right-title {
             font-size: 20px;
@@ -160,10 +168,10 @@
             position: relative;
             background: transparent url(../images/img_Potential_Failure.svg) no-repeat top right;
             background-size: 150px;
-            background-position: 90% 0;
+            background-position: 90% 20px;
 
             .pmt-heatmap {
-                margin: 30px 0 0 0;
+                margin: 40px 0 0 0;
 
                 img {
                     width: 100%
@@ -199,6 +207,22 @@
                             justify-content: center;
                             margin-bottom: 10px;
                             padding-bottom: 10px;
+                            position: relative;
+
+                            .hi-pop-close {
+                                font-size: 15px;
+                                border-radius: 50%;
+                                background: #009FDF;
+                                color: #fff;
+                                border: 1px #ccc solid;
+                                position: absolute;
+                                right: 0px;
+                                top: -10px;
+                                width: 30px;
+                                height: 30px;
+                                text-align: center;
+                                line-height: 30px;
+                            }
                         }
 
                         .hi-popbox {
@@ -264,22 +288,30 @@
 
                     .hi-pos-off {
                         left: -100% !important;
-                        display: none;
+                        // display: block;
+                    }
+
+                    .show {
+                        display: block;
+                    }
+
+                    .hidden {
+                        display: none !important;
                     }
 
                     .hi-pos-normal {
                         left: -100% !important;
-                        display: none;
+                        //  display: none;
                     }
 
                     .hi-pos-warning {
                         left: -150px !important;
-                        display: none;
+                        // display: none;
                     }
 
                     .hi-pos-risk {
                         left: -132% !important;
-                        display: none;
+                        //  display: none;
                     }
 
                     .hi-pos-warning::after {
@@ -449,19 +481,19 @@
                     .pmt-health-index {
                         .pmt-heatmapvalues {
                             .hi-pos-off {
-                                left: -15% !important;
+                                // left: -15% !important;
                             }
 
                             .hi-pos-normal {
-                                left: 5% !important
+                                // left: 5% !important
                             }
 
                             .hi-pos-warning {
-                                left: 25% !important
+                                // left: 25% !important
                             }
 
                             .hi-pos-risk {
-                                left: 30% !important
+                                // left: 30% !important
                             }
 
                             .hi-pos-risk::after {

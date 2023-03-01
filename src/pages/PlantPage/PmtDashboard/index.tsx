@@ -39,10 +39,13 @@ const PmtDashboard = () => {
 
     const [assetIdDropList, setAssetIdDropList] = useState<any>();
     const [selectedAssetId, setSelectedAssetId] = useState<any>("")
+    const [heatStatusList, setHeatStatusList] = useState<any>();
+    const [selectedHeatStatus, setSelectedHeatStatus] = useState<any>("")
     const [heatMapData, setheatMapData] = useState({
         assetOff: "",
         warning: "",
         normal: "",
+        assetUnderRisk: ""
     })
 
 
@@ -51,11 +54,11 @@ const PmtDashboard = () => {
         dispatch(getAssetListByPlantId("18"));    //selectedPlant.value
         dispatch(getPlantAlertSpmt("18"));        //selectedPlant.value
         dispatch(getAssetCardPmtByPlantId("18")); //selectedPlant.value
-        dispatch(getAssetCardPmtByAssetId("18")); //selectedAssetId.value
+        // dispatch(getAssetCardPmtByAssetId("18")); //selectedAssetId.value
         dispatch(getAssetStatusPmtByPlantId("18")); //selectedPlant.value
         dispatch(getStatusAssetPmtByPlantId("18")); //selectedPlant.value
         dispatch(getssetStatusListbyPlantId("18")); //selectedPlant.value
-        dispatch(getHeatMapToolTipbyAssetStatus("18")); //selectedPlant.value
+        //dispatch(getHeatMapToolTipbyAssetStatus("18")); //selectedPlant.value
         dispatch(getTopBarToolTipbyPlantId("18")); //selectedPlant.value
     }, []);
 
@@ -67,12 +70,20 @@ const PmtDashboard = () => {
     }, [assetListByPlant]);
 
     useEffect(() => {
+        let data = setStatusListbyPlantId.map(function (item: any, index: number) {
+            return { value: item.status, label: item.status };
+        });
+        setHeatStatusList(data);
+    }, [setStatusListbyPlantId]);
+
+    useEffect(() => {
         if (assetStatusPmtByPlantId.length > 0)
             setheatMapData({
                 ...heatMapData,
-                assetOff: assetStatusPmtByPlantId[0].value,
-                warning: assetStatusPmtByPlantId[1].value,
-                normal: assetStatusPmtByPlantId[2].value,
+                assetOff: assetStatusPmtByPlantId.find((item: any) => item.title === "Normal"),
+                warning: assetStatusPmtByPlantId.find((item: any) => item.title === "Warning"),
+                normal: assetStatusPmtByPlantId.find((item: any) => item.title === "Normal"),
+                assetUnderRisk: assetStatusPmtByPlantId.find((item: any) => item.title === "Asset_Under_Risk"),
 
             })
     }, [assetStatusPmtByPlantId]);
@@ -87,6 +98,13 @@ const PmtDashboard = () => {
         //dispatch(getAffiliatesByRegion(e.value));
         dispatch(getAssetCardPmtByAssetId(e.value)); //selectedAssetId.value
     };
+
+    const handleHeatStatusListChange = (e: any) => {
+        //  console.log(e.value)
+        setSelectedHeatStatus(e.value)
+        dispatch(getHeatMapToolTipbyAssetStatus(e.value)); //selectedPlant.value
+    };
+
     console.log("assetListByPlant details", assetListByPlant);
     console.log("plantAlertSpmt details", plantAlertSpmt);
     console.log("assetCardPmtByplantId details", assetCardPmtByplantId);
@@ -126,7 +144,15 @@ const PmtDashboard = () => {
                 <>
                     <div className="pmt-right-title">RELIABILITY HEAT MAP</div>
                     <div>Click on the map to get more details</div>
-                    <ReliablityHeatMap statusData={heatMapData} />
+                    <div className="pmt-right-dropdown"><Dropdown
+                        options={heatStatusList}
+                        // defaultValue={selectedRegion}
+                        handleChange={handleHeatStatusListChange}
+                    /></div>
+                    <ReliablityHeatMap
+                        statusData={heatMapData}
+                        toolTipData={heatMapToolTipbyAssetStatus}
+                        selectedHeatStatus={selectedHeatStatus} />
                 </>
             </div>
         </div>
