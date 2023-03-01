@@ -1,119 +1,112 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./Assets.scss"
-import assetModel from "../assets/images/asset-model.png";
-import Graph from "../assets/images/Graph.png";
-import AssetMenu from '../components/Asset/AssetMenu/AssetMenu'
+// import BreadCrumb from "../components/BreadCrumb/BreadCrumb";
+import AlertList from "./AssetsPage/AlertList/AlertList";
+import AssetModel from "./AssetsPage/AssetModel/AssetModel";
+import AssetTimeLine from "./AssetsPage/AssetTimeLine/AssetTimeLine";
+import SpareParts from "./AssetsPage/SpareParts/SpareParts";
+import LiveTracking from "./AssetsPage/LiveTracking/LiveTracking";
+import ReferenceTable from "./AssetsPage/ReferenceTable/ReferenceTable";
+import Plot from "./AssetsPage/Plot/Plot";
+// import { useDispatch, useSelector } from "react-redux";
+
 interface Props {
     buttonName: string;
     onClickHandler: any;
+
 }
 
 const Assets = () => {
 
+    const DATA = [
+        { id: "AssetModel", value: "ASSET MODEL" },
+        { id: "LiveTracking", value: "LIVE TRACKING" },
+        { id: "AssetTimeLine", value: "ASSET TIMELINE" },
+        { id: "AlertList", value: "ALERT LIST" },
+        { id: "Plot", value: "PLOT" },
+        { id: "ReferenceTable", value: "REFERENCE TABLE" },
+        { id: "SpareParts", value: "SPARE PARTS" },
+       
+    ];
+
+    const [elements, setElements] = useState(DATA);
+    const [selectedID, setSelectedID] = useState("AssetModel"); // you could set a default id as well
+
+    const handleClick = (id: any) => setSelectedID(id);
+
+
+    const getSelectedclassName = (id: any) => selectedID === id ? "active" : "notselected";
+
+    const TopContainer = () => {
+        return (
+            <div id="asset-menu">
+                {elements.map((el) => (
+                    <a
+                        key={el.id}
+                        id={el.id}
+                        className={`top-container-conten ${getSelectedclassName(el.id)}`}
+                        onClick={() => handleClick(el.id)}
+                    >
+                        {el.value}
+                    </a>
+                ))}
+            </div>
+        );
+    }
+
+
+    const renderStep = () => {
+        switch (selectedID) {
+            case "AssetModel":
+                return (
+                    <AssetModel
+                    />
+                )
+            case "AlertList":
+                return (
+                    <AlertList
+                    />
+                )
+            case "Plot":
+                return (
+                    <Plot
+                    />
+                )
+            case "LiveTracking":
+                return (
+                    <LiveTracking
+                    />
+                )
+            case "AssetTimeLine":
+                return (
+                    <AssetTimeLine
+                    />
+                )
+            case "SpareParts":
+                return (
+                    <SpareParts
+                    />
+                )
+            case "ReferenceTable":
+                return (
+                    <ReferenceTable
+                    />
+                )
+
+            default:
+                return <div>{"INFO_NO_STEP_AVAILABLE"}</div>
+        }
+    }
+
+
+
+
     return (
         <div>
-            <AssetMenu />
-            <div id="asset-model">
-                <div id="asset-model-left">
-                    <div className="asset-model-left-inner">
-                        <div className="sensor-filter">
-                            <div className="title">SENSOR PLOT</div>
-                            <div className="sensor-options">
-                                <select><option>Model</option></select></div>
-                        </div>
-                        <div className="asset-name">K-1701</div>
-                        <div className="asset-plot-graph"><img src={assetModel} /></div>
-                    </div>
-                    <div className="asset-plot-status">
-                        <div><span className="downarrow redy"></span><span>EFFICIENCY</span> <span className="amhi-slider"><i className="aafter" style={{ left: '30%' }}>30%</i></span></div>
-                        <div><span className="downarrow redy"></span><span>PERFORMANCE</span> <span className="amhi-slider"><i className="aafter" style={{ left: '62%' }}>62%</i></span></div>
-                        <div></div>
-                        <div className="asset-status-graph"><img src={Graph} /></div>
-                    </div>
-                </div>
-                <div id="asset-model-right">
-                    <div className="right-title">LIVE MODELS</div>
-                    <div className="right-asset-name">K-1701</div>
-                    <div className="accordian-title-active">Anomaly Model <span>+</span></div>
-                    <div className="accordian-body">
-                        <div className="asset-model-health-index">
-                            <div className="amhi-row-title">
-                                <div>Model Name</div>
-                                <div>Health Index %</div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Bearing 1</div>
-                                <div><span className="uparrow greeny"></span> <span className="amhi-slider"><i className="abefore" style={{ left: 'calc(99% - 35px)' }}>99%</i></span></div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Bearing 2</div>
-                                <div><span className="downarrow redy"></span> <span className="amhi-slider"><i className="aafter" style={{ left: '2%' }}>2%</i></span></div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Bearing 3</div>
-                                <div><span className="downarrow redy"></span> <span className="amhi-slider"><i className="aafter" style={{ left: '33%' }}>33%</i></span></div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Comp Peformance</div>
-                                <div><span className="uparrow greeny"></span> <span className="amhi-slider"><i className="aafter" style={{ left: '60%' }}>60%</i></span></div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Turbine Performance</div>
-                                <div><span className="downarrow redy"></span> <span className="amhi-slider"><i className="aafter" style={{ left: '42%' }}>42%</i></span></div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Coupling</div>
-                                <div><span className="downarrow redy"></span> <span className="amhi-slider"><i className="aafter" style={{ left: '33%' }}>33%</i></span></div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Dry Gas Seal1</div>
-                                <div><span className="uparrow greeny"></span> <span className="amhi-slider"><i className="abefore" style={{ left: 'calc(85% - 35px)' }}>85%</i></span></div>
-                            </div><div className="amhi-row">
-                                <div>Bearing 1</div>
-                                <div><span className="uparrow greeny"></span> <span className="amhi-slider"><i className="abefore" style={{ left: 'calc(99% - 35px)' }}>99%</i></span></div>
-                            </div>
-                            <div className="amhi-row">
-                                <div>Bearing 2</div>
-                                <div><span className="downarrow redy"></span> <span className="amhi-slider"><i className="aafter" style={{ left: '2%' }}>2%</i></span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="accordian-title">Failure Prediction <span>-</span></div>
-                    <div className="accordian-body">
-                        <div className="asset-model-failure-prediction">
-                            <div className="amfp-row-title">
-                                <div>MODEL NAME</div>
-                                <div>RUL</div>
-                                <div>CONFIDENCE FACTOR</div>
-                            </div>
-                            <div className="amfp-row">
-                                <div>Bearing 1</div>
-                                <div>5</div>
-                                <div>22</div>
-                            </div>
-                            <div className="amfp-row">
-                                <div>Bearing 2</div>
-                                <div>15</div>
-                                <div>62</div>
-                            </div>
-                            <div className="amfp-row">
-                                <div>Bearing 3</div>
-                                <div>11</div>
-                                <div>2</div>
-                            </div>
-                            <div className="amfp-row">
-                                <div>Bearing 4</div>
-                                <div>15</div>
-                                <div>62</div>
-                            </div>
-                            <div className="amfp-row">
-                                <div>Bearing 5</div>
-                                <div>11</div>
-                                <div>2</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {/* <BreadCrumb /> */}
+            <div id="content-affiliates" style={{ top: "0px" }}>
+                <TopContainer />
+                {renderStep()}
             </div>
         </div>
 
