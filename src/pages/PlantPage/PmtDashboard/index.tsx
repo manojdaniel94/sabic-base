@@ -12,6 +12,9 @@ import {
     getAssetCardPmtByAssetId,
     getAssetStatusPmtByPlantId,
     getStatusAssetPmtByPlantId,
+    getssetStatusListbyPlantId,
+    getHeatMapToolTipbyAssetStatus,
+    getTopBarToolTipbyPlantId
 } from '../../../redux/reducers/CommonReducer';
 
 
@@ -20,7 +23,7 @@ const PmtDashboard = () => {
 
     let dispatch = useDispatch();
 
-    const { regions, assetListByPlant,plantAlertSpmt,assetCardPmtByplantId,assetCardPmtByAssetId,assetStatusPmtByPlantId,statusAssetPmtByPlantId} = useSelector((state: any) => ({
+    const { regions, assetListByPlant,plantAlertSpmt,assetCardPmtByplantId,assetCardPmtByAssetId,assetStatusPmtByPlantId,statusAssetPmtByPlantId,setStatusListbyPlantId,heatMapToolTipbyAssetStatus,topBarToolTipbyPlantId} = useSelector((state: any) => ({
         regions: state.Common.regions,
         assetListByPlant: state.Common.assetListByPlant,
         plantAlertSpmt: state.Common.plantAlertSpmt,
@@ -28,17 +31,23 @@ const PmtDashboard = () => {
         assetCardPmtByAssetId: state.Common.assetCardPmtByAssetId,
         assetStatusPmtByPlantId: state.Common.assetStatusPmtByPlantId,
         statusAssetPmtByPlantId: state.Common.statusAssetPmtByPlantId,
+        setStatusListbyPlantId: state.Common.setStatusListbyPlantId,
+        heatMapToolTipbyAssetStatus: state.Common.heatMapToolTipbyAssetStatus,
+        topBarToolTipbyPlantId: state.Common.topBarToolTipbyPlantId,
     }));
 
 
     useEffect(() => {
         dispatch(getRegions("1"));
-        dispatch(getAssetListByPlantId("1"));    //selectedPlant.value
-        dispatch(getPlantAlertSpmt("1"));        //selectedPlant.value
-        dispatch(getAssetCardPmtByPlantId("1")); //selectedPlant.value
-        dispatch(getAssetCardPmtByAssetId("1")); //selectedAssetId.value
-        dispatch(getAssetStatusPmtByPlantId("1")); //selectedPlant.value
-        dispatch(getStatusAssetPmtByPlantId("1")); //selectedPlant.value
+        dispatch(getAssetListByPlantId("18"));    //selectedPlant.value
+        dispatch(getPlantAlertSpmt("18"));        //selectedPlant.value
+        dispatch(getAssetCardPmtByPlantId("18")); //selectedPlant.value
+        dispatch(getAssetCardPmtByAssetId("18")); //selectedAssetId.value
+        dispatch(getAssetStatusPmtByPlantId("18")); //selectedPlant.value
+        dispatch(getStatusAssetPmtByPlantId("18")); //selectedPlant.value
+        dispatch(getssetStatusListbyPlantId("18")); //selectedPlant.value
+        dispatch(getHeatMapToolTipbyAssetStatus("18")); //selectedPlant.value
+        dispatch(getTopBarToolTipbyPlantId("18")); //selectedPlant.value
     }, []);
 
     useEffect(() => {
@@ -51,6 +60,9 @@ const PmtDashboard = () => {
     console.log("assetCardPmtByAssetId details" , assetCardPmtByAssetId);
     console.log("Heatchart details" , assetStatusPmtByPlantId);
     console.log("getTopStatusByPlantId" , statusAssetPmtByPlantId);
+    console.log("setStatusListbyPlantId" , setStatusListbyPlantId);
+    console.log("heatMapToolTipbyAssetStatus" , heatMapToolTipbyAssetStatus);
+    console.log("topBarToolTipbyPlantId" , topBarToolTipbyPlantId);
    
 
 
