@@ -1,18 +1,49 @@
 import React, { useRef } from "react";
 import '../../../assets/common/PmtDashboard.scss'
+import { Table } from "antd";
 
 
-const AssetCard = () => {
+interface Props {
+    data: any[];
+}
+const AssetCard = ({ data }: Props) => {
+
+
+    const columns = [
+        {
+            title: "TIME STAMP",
+            dataIndex: "timeStamp",
+            key: "timeStamp",
+            width: "30%",
+        },
+
+        {
+            title: "ALERT DESCRIPTION",
+            dataIndex: "description",
+            key: "description",
+        },
+        {
+            title: "ALERT STATUS",
+            dataIndex: "status",
+            key: "status",
+            width: "20%",
+
+            render: (status: any) => (
+                <span style={{ color: status === "Active" ? "red" : "green" }}>
+                    {status}
+                </span>
+            ),
+        },
+    ];
+
+
     return (
-        <div id="pmt-asset-card">
-            <div className="pmt-filter">
-                <div className="pmt-title">ASSET CARD</div>
-                <div className="pmt-time">Go to Asset Page</div>
-                <div className="pmt-time"><span>Asset ID</span><input type="text" /></div>
-                <div className="pmt-options"><select><option>All Assets</option></select></div>
-            </div>
-            <div className="pmt-asset-name">LC-01 - CGC</div>
-        </div>
+        <Table
+            columns={columns}
+            dataSource={data}
+            pagination={false}
+            scroll={{ y: 100 }}
+        />
     );
 };
 
