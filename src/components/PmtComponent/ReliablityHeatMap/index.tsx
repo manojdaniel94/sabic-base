@@ -7,10 +7,16 @@ interface Props {
     statusData: any,
     toolTipData: any[],
     selectedHeatStatus: any
+    setMouseHover: any
+    mouseHover: any
 }
-const ReliablityHeatMap = ({ statusData, toolTipData, selectedHeatStatus }: Props) => {
 
-    const [mouseHoverValue, setMouseHoverValue] = useState<any>("")
+const ReliablityHeatMap = ({ statusData,
+    toolTipData,
+    selectedHeatStatus,
+    setMouseHover,
+    mouseHover }: Props) => {
+
     return (
         <div className="pmt-health-index">
             <div className="pmt-heatmap">
@@ -19,56 +25,78 @@ const ReliablityHeatMap = ({ statusData, toolTipData, selectedHeatStatus }: Prop
             <div className="pmt-heatmapvalues">
                 <div className="hi-value1">
                     <span className="hi-numbers hi-off"
-                        onMouseOver={() => { setMouseHoverValue("Asset-off"); console.log("hii") }}
-                    // onMouseOut={() => setMouseHoverValue("")}
+                        onMouseOver={() => {
+                            setMouseHover({
+                                ...mouseHover, over: true,
+                                statusName: "Asset-off"
+                            })
+                        }}
                     >
-                        <div className={`hi-popup hi-pos-off ${mouseHoverValue && selectedHeatStatus === "Asset-off" ? 'show' : 'hidden'}`}>
-                            <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHoverValue("")}> X</a></h3>
+                        <div className={`hi-popup hi-pos-off ${mouseHover.statusName === "Asset-off" && selectedHeatStatus === "Asset-off" ? 'show' : 'hidden'}`}>
+                            <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHover({
+                                ...mouseHover, over: false, statusName: ""
+                            })}> X</a></h3>
                             <div className="hi-popbox">
                                 {toolTipData.map((item) => (
                                     <div className="hi-popuprow"><span>{item.assetId}</span><span><i></i>{item.assetHealthIndex}%</span></div>
                                 ))}
                             </div>
                         </div>
-                        {statusData && statusData.assetOff.value}</span><span className="hi-name">Asset-Off</span><span className="hi-status">Off</span></div>
+                        {selectedHeatStatus === "Asset-off" || selectedHeatStatus === "" ? statusData.assetOff.value : 0}</span><span className="hi-name">Asset-Off</span><span className="hi-status">Off</span></div>
                 <div className="hi-value2">
                     <span className="hi-numbers hi-normal"
-                        onMouseOver={() => { setMouseHoverValue("Normal"); console.log("hii") }}
+                        onMouseOver={() => {
+                            setMouseHover({
+                                ...mouseHover, over: true,
+                                statusName: "Normal"
+                            })
+                        }}
                     >
-                        <div className={`hi-popup hi-pos-normal ${mouseHoverValue && selectedHeatStatus === "Normal" ? 'show' : 'hidden'}`}>
-                            <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHoverValue("")}> X</a></h3>
+                        <div className={`hi-popup hi-pos-normal ${mouseHover.statusName === "Normal" && selectedHeatStatus === "Normal" ? 'show' : 'hidden'}`}>
+                            <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHover({
+                                ...mouseHover, over: false, statusName: ""
+                            })}> X</a></h3>
                             <div className="hi-popbox">
                                 {toolTipData.map((item) => (
                                     <div className="hi-popuprow"><span>{item.assetId}</span><span><i></i>{item.assetHealthIndex}%</span></div>
                                 ))}
                             </div>
-                        </div> {statusData && statusData.warning.value}</span><span className="hi-name">Normal</span><span className="hi-status">Health Index &gt; 70%</span></div>
+                        </div> {selectedHeatStatus === "Normal" || selectedHeatStatus === "" ? statusData.warning.value : 0}</span><span className="hi-name">Normal</span><span className="hi-status">Health Index &gt; 70%</span></div>
 
 
                 <div className="hi-value3"><span className="hi-numbers hi-warning"
-                    onMouseOver={() => { setMouseHoverValue("Warning"); console.log("hii") }}
+                    onMouseOver={() => setMouseHover({
+                        ...mouseHover, over: true, statusName: "Warning"
+                    })}
                 >
-                    <div className={`hi-popup hi-pos-warning ${mouseHoverValue && selectedHeatStatus === "Warning" ? 'show' : 'hidden'}`}>
-                        <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHoverValue("")}> X</a></h3>
+                    <div className={`hi-popup hi-pos-warning ${mouseHover.statusName === "Warning" && selectedHeatStatus === "Warning" ? 'show' : 'hidden'}`}>
+                        <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHover({
+                            ...mouseHover, over: false, statusName: ""
+                        })}> X</a></h3>
                         <div className="hi-popbox">
                             {toolTipData.map((item) => (
                                 <div className="hi-popuprow"><span>{item.assetId}</span><span><i></i>{item.assetHealthIndex}%</span></div>
                             ))}
                         </div>
-                    </div>  {statusData && statusData.normal.value}</span><span className="hi-name">Warning</span><span className="hi-status">Health Index &lt; 70%</span></div>
+                    </div>  {selectedHeatStatus === "Warning" || selectedHeatStatus === "" ? statusData.normal.value : 0}</span><span className="hi-name">Warning</span><span className="hi-status">Health Index &lt; 70%</span></div>
 
 
                 <div className="hi-value4"><span className="hi-numbers hi-risk"
-                    onMouseOver={() => { setMouseHoverValue("Asset Under Risk"); console.log("hii") }}
+                    onMouseOver={() => setMouseHover({
+                        ...mouseHover, over: true, statusName: "Asset Under Risk"
+                    })}
                 >
-                    <div className={`hi-popup hi-pos-risk ${mouseHoverValue && selectedHeatStatus === "Asset Under Risk" ? 'show' : 'hidden'}`}>
-                        <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHoverValue("")}> X</a></h3>
+                    <div className={`hi-popup hi-pos-risk ${mouseHover.statusName === "Asset Under Risk" && selectedHeatStatus === "Asset Under Risk" ? 'show' : 'hidden'}`}>
+                        <h3>HEALTH INDEX <a href="#" className="hi-pop-close" onClick={() => setMouseHover({
+                            ...mouseHover, over: false, statusName: ""
+                        })}> X</a></h3>
                         <div className="hi-popbox">
                             {toolTipData.map((item) => (
                                 <div className="hi-popuprow"><span>{item.assetId}</span><span><i></i>{item.assetHealthIndex}%</span></div>
                             ))}
                         </div>
-                    </div>  {statusData && statusData.assetUnderRisk.value}</span><span className="hi-name">Asset Under Risk</span><span className="hi-status">Health Index Under Risk</span></div>
+                    </div>
+                    {selectedHeatStatus === "Asset Under Risk" || selectedHeatStatus === "" ? statusData.assetUnderRisk.value : 0}</span><span className="hi-name">Asset Under Risk</span><span className="hi-status">Health Index Under Risk</span></div>
             </div>
 
         </div >
@@ -76,3 +104,6 @@ const ReliablityHeatMap = ({ statusData, toolTipData, selectedHeatStatus }: Prop
 };
 
 export default ReliablityHeatMap;
+
+//&& selectedHeatStatus === "Asset-off"
+//&& selectedHeatStatus === "Normal"

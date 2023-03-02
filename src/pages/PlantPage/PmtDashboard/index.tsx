@@ -49,6 +49,11 @@ const PmtDashboard = () => {
     })
     const [getErrorMag, setErrorMag] = useState(false);
 
+    const [mouseHover, setMouseHover] = useState({
+        over: false,
+        statusName: ""
+    })
+
 
     useEffect(() => {
         dispatch(getRegions("1"));
@@ -89,22 +94,26 @@ const PmtDashboard = () => {
             })
     }, [assetStatusPmtByPlantId]);
 
-
+    useEffect(() => {
+        if (mouseHover.over) {
+            dispatch(getHeatMapToolTipbyAssetStatus(mouseHover.statusName));
+            console.log("hii")
+        }
+        console.log(mouseHover)
+    }, [mouseHover.over, mouseHover.statusName]);
 
 
     const handleAssetIdDropChange = (e: any) => {
         // console.log(e.value)
         setSelectedAssetId(e.value)
-        // setValue({ ...value, localRegion: e, })
-        //dispatch(getAffiliatesByRegion(e.value));
         dispatch(getAssetCardPmtByAssetId(e.value)); //selectedAssetId.value
         setErrorMag(false);
     };
 
-    const handleHeatStatusListChange = (e: any) => {
+    const handleHeatStatusDropChange = (e: any) => {
         //  console.log(e.value)
         setSelectedHeatStatus(e.value)
-        dispatch(getHeatMapToolTipbyAssetStatus(e.value)); //selectedPlant.value
+        //dispatch(getHeatMapToolTipbyAssetStatus(e.value)); //selectedPlant.value
     };
 
     // console.log("assetListByPlant details", assetListByPlant);
@@ -128,6 +137,9 @@ const PmtDashboard = () => {
     }
 
     // const getSelectedclassName = (id: any) => selectedID === id ? "error" : "";
+    // const handleMouseOver = (val: any) => {
+    //     dispatch(getHeatMapToolTipbyAssetStatus(val));
+    // }
 
     return (
         <div id="pmt">
@@ -165,12 +177,16 @@ const PmtDashboard = () => {
                     <div className="pmt-right-dropdown"><Dropdown
                         options={heatStatusList}
                         // defaultValue={selectedRegion}
-                        handleChange={handleHeatStatusListChange}
+                        handleChange={handleHeatStatusDropChange}
                     /></div>
                     <ReliablityHeatMap
                         statusData={heatMapData}
                         toolTipData={heatMapToolTipbyAssetStatus}
-                        selectedHeatStatus={selectedHeatStatus} />
+                        selectedHeatStatus={selectedHeatStatus}
+                        setMouseHover={setMouseHover}
+                        mouseHover={mouseHover}
+
+                    />
                 </>
             </div>
         </div>
