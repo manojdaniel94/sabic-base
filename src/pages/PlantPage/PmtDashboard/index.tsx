@@ -48,6 +48,11 @@ const PmtDashboard = () => {
         assetUnderRisk: ""
     })
 
+    const [mouseHover, setMouseHover] = useState({
+        over: false,
+        statusName: ""
+    })
+
 
     useEffect(() => {
         dispatch(getRegions("1"));
@@ -88,34 +93,39 @@ const PmtDashboard = () => {
             })
     }, [assetStatusPmtByPlantId]);
 
-
+    useEffect(() => {
+        if (mouseHover.over) {
+            dispatch(getHeatMapToolTipbyAssetStatus(mouseHover.statusName));
+            console.log("hii")
+        }
+        console.log(mouseHover)
+    }, [mouseHover.over, mouseHover.statusName]);
 
 
     const handleAssetIdDropChange = (e: any) => {
-        //  console.log(e.value)
         setSelectedAssetId(e.value)
-        // setValue({ ...value, localRegion: e, })
-        //dispatch(getAffiliatesByRegion(e.value));
         dispatch(getAssetCardPmtByAssetId(e.value)); //selectedAssetId.value
     };
 
-    const handleHeatStatusListChange = (e: any) => {
+    const handleHeatStatusDropChange = (e: any) => {
         //  console.log(e.value)
         setSelectedHeatStatus(e.value)
-        dispatch(getHeatMapToolTipbyAssetStatus(e.value)); //selectedPlant.value
+        //dispatch(getHeatMapToolTipbyAssetStatus(e.value)); //selectedPlant.value
     };
 
-    console.log("assetListByPlant details", assetListByPlant);
-    console.log("plantAlertSpmt details", plantAlertSpmt);
-    console.log("assetCardPmtByplantId details", assetCardPmtByplantId);
-    console.log("assetCardPmtByAssetId details", assetCardPmtByAssetId);
-    console.log("Heatchart details", assetStatusPmtByPlantId);
-    console.log("getTopStatusByPlantId", statusAssetPmtByPlantId);
-    console.log("setStatusListbyPlantId", setStatusListbyPlantId);
-    console.log("heatMapToolTipbyAssetStatus", heatMapToolTipbyAssetStatus);
-    console.log("topBarToolTipbyPlantId", topBarToolTipbyPlantId);
+    // console.log("assetListByPlant details", assetListByPlant);
+    // console.log("plantAlertSpmt details", plantAlertSpmt);
+    // console.log("assetCardPmtByplantId details", assetCardPmtByplantId);
+    // console.log("assetCardPmtByAssetId details", assetCardPmtByAssetId);
+    // console.log("Heatchart details", assetStatusPmtByPlantId);
+    // console.log("getTopStatusByPlantId", statusAssetPmtByPlantId);
+    // console.log("setStatusListbyPlantId", setStatusListbyPlantId);
+    // console.log("heatMapToolTipbyAssetStatus", heatMapToolTipbyAssetStatus);
+    // console.log("topBarToolTipbyPlantId", topBarToolTipbyPlantId);
 
-
+    // const handleMouseOver = (val: any) => {
+    //     dispatch(getHeatMapToolTipbyAssetStatus(val));
+    // }
 
     return (
         <div id="pmt">
@@ -147,12 +157,16 @@ const PmtDashboard = () => {
                     <div className="pmt-right-dropdown"><Dropdown
                         options={heatStatusList}
                         // defaultValue={selectedRegion}
-                        handleChange={handleHeatStatusListChange}
+                        handleChange={handleHeatStatusDropChange}
                     /></div>
                     <ReliablityHeatMap
                         statusData={heatMapData}
                         toolTipData={heatMapToolTipbyAssetStatus}
-                        selectedHeatStatus={selectedHeatStatus} />
+                        selectedHeatStatus={selectedHeatStatus}
+                        setMouseHover={setMouseHover}
+                        mouseHover={mouseHover}
+
+                    />
                 </>
             </div>
         </div>

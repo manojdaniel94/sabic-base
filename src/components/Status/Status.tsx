@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Status = ({ data, page, healthIndex }: Props) => {
-    console.log("healthIndex for PLANT", healthIndex)
+    // console.log("healthIndex for PLANT", healthIndex)
     return (
         <>
             {page === "PLANT" ?
