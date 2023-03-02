@@ -47,6 +47,7 @@ const PmtDashboard = () => {
         normal: "",
         assetUnderRisk: ""
     })
+    const [getErrorMag, setErrorMag] = useState(false);
 
 
     useEffect(() => {
@@ -64,7 +65,7 @@ const PmtDashboard = () => {
 
     useEffect(() => {
         let data = assetListByPlant.map(function (item: any) {
-            return { value: item.assetId, label: item.assetId };
+            return { value: item.assetId, label: item.assetName };
         });
         setAssetIdDropList(data);
     }, [assetListByPlant]);
@@ -92,11 +93,12 @@ const PmtDashboard = () => {
 
 
     const handleAssetIdDropChange = (e: any) => {
-        //  console.log(e.value)
+        // console.log(e.value)
         setSelectedAssetId(e.value)
         // setValue({ ...value, localRegion: e, })
         //dispatch(getAffiliatesByRegion(e.value));
         dispatch(getAssetCardPmtByAssetId(e.value)); //selectedAssetId.value
+        setErrorMag(false);
     };
 
     const handleHeatStatusListChange = (e: any) => {
@@ -105,17 +107,27 @@ const PmtDashboard = () => {
         dispatch(getHeatMapToolTipbyAssetStatus(e.value)); //selectedPlant.value
     };
 
-    console.log("assetListByPlant details", assetListByPlant);
-    console.log("plantAlertSpmt details", plantAlertSpmt);
-    console.log("assetCardPmtByplantId details", assetCardPmtByplantId);
-    console.log("assetCardPmtByAssetId details", assetCardPmtByAssetId);
-    console.log("Heatchart details", assetStatusPmtByPlantId);
-    console.log("getTopStatusByPlantId", statusAssetPmtByPlantId);
-    console.log("setStatusListbyPlantId", setStatusListbyPlantId);
-    console.log("heatMapToolTipbyAssetStatus", heatMapToolTipbyAssetStatus);
-    console.log("topBarToolTipbyPlantId", topBarToolTipbyPlantId);
+    // console.log("assetListByPlant details", assetListByPlant);
+    // console.log("plantAlertSpmt details", plantAlertSpmt);
+    // console.log("assetCardPmtByplantId details", assetCardPmtByplantId);
+    // console.log("assetCardPmtByAssetId details", assetCardPmtByAssetId);
+    // console.log("Heatchart details", assetStatusPmtByPlantId);
+    // console.log("getTopStatusByPlantId", statusAssetPmtByPlantId);
+    // console.log("setStatusListbyPlantId", setStatusListbyPlantId);
+    // console.log("heatMapToolTipbyAssetStatus", heatMapToolTipbyAssetStatus);
+    // console.log("topBarToolTipbyPlantId", topBarToolTipbyPlantId);
 
+    let handleNavigation = (select:any)=>{
+       console.log("Go to Asset Page with Asset ID",select);
+       if(select ===""){
+          setErrorMag(true);
+       }
+       if(select !==""){
+          setErrorMag(false);
+       }
+    }
 
+    // const getSelectedclassName = (id: any) => selectedID === id ? "error" : "";
 
     return (
         <div id="pmt">
@@ -123,16 +135,22 @@ const PmtDashboard = () => {
                 <div id="pmt-asset-card">
                     <div className="pmt-filter">
                         <div className="pmt-title">ASSET CARD</div>
-                        <div className="pmt-time">Go to Asset Page</div>
-                        <div className="pmt-time"><span>Asset ID</span><input type="text" /></div>
-
+                        <div className="pmt-time" 
+                         onClick={() => handleNavigation(selectedAssetId)}
+                        >Go to Asset Page</div>
+                        <div className={`pmt-time`}><span>Asset ID</span>
+                        <input type="text"  value={selectedAssetId}/>
+                        <br></br>
+                        {getErrorMag === true ? <span className="PmtErrorMsg">Need to select AssetID</span> : ""}
+                        </div>
+ 
                         <Dropdown
                             options={assetIdDropList}
                             // defaultValue={selectedRegion}
                             handleChange={handleAssetIdDropChange}
                         />
                     </div>
-                    <div className="pmt-asset-name">LC-01 - CGC</div>
+                    {/* <div className="pmt-asset-name">LC-01 - CGC</div> */}
                     <AssetCard
                         data={selectedAssetId === "" ?
                             assetCardPmtByplantId : assetCardPmtByAssetId} />

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import "./Plant.scss"
 import MenuContainer from "../components/MenuContainer";
 import PmtDashboard from "./PlantPage/PmtDashboard";
 import AlertSatistics from "./PlantPage/AlertSatistics";
